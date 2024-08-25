@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <span class="country-info">Country Information</span>
+  </mat-toolbar>
+
+  <div class="search-bar">
+    <mat-form-field appearance="fill">
+      <mat-label>Search for a country</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="onSearch()" (ngModelChange)="filterCountries()" placeholder="Search for a country">
+    </mat-form-field>
+  </div>
+
+  <mat-card *ngIf="showCountriesList" class="country-list">
+    <mat-list>
+      <mat-list-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
+        {{ country.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+  <mat-card *ngIf="randomCountries.length" class="random-countries">
+    <mat-card-title>Random Countries</mat-card-title>
+    <mat-list>
+      <mat-list-item *ngFor="let country of randomCountries">
+        <strong>{{ country.name }}</strong>: Next holiday on {{ country.holiday.date | date }} - {{ country.holiday.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>

@@ -1,0 +1,31 @@
+<mat-card class="country-holidays">
+  <mat-card-header>
+
+      <mat-card-title>Country: {{ countryName }}</mat-card-title>
+
+
+    <mat-card-subtitle>Holidays for {{ countryName }} - {{ currentYear }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button mat-button (click)="goHome()">Home</button>
+  </mat-card-actions>
+
+  <mat-card-content>
+    <mat-list *ngIf="holidays.length > 0; else noHolidays">
+      <mat-list-item *ngFor="let holiday of holidays">
+        <strong>{{ holiday.name }}</strong> - {{ holiday.date | date: 'fullDate' }}
+      </mat-list-item>
+    </mat-list>
+
+    <ng-template #noHolidays>
+      <p>No holidays available for the selected year.</p>
+    </ng-template>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button *ngFor="let year of [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]" (click)="changeYear(year)">
+      {{ year }}
+    </button>
+  </mat-card-actions>
+</mat-card>
